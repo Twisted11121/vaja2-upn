@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 import pytz
+import random
 
 def birthday():
     format1 = "%d.%m.%Y"
@@ -92,7 +93,18 @@ def closes_timezones(time=16):
         hour = now.hour
         if hour == time:
             print(timeZone)
+
+def birthday_paradox():
+    tests = 1000
+    people = 23
+    matches = 0
     
+    for x in range(tests):
+        birthday = [random.randint(1, 365) for _ in range(people)]
+        if len(birthday) != len(set(birthday)):
+            matches += 1
+    
+    print(f"Probability {(matches / tests)*100}")
     
 
 
@@ -102,7 +114,8 @@ def main():
     #pocitnice()
     #friday_thirteenth()
     #weekend_work_days()
-    closes_timezones()
-
+    #closes_timezones()
+    birthday_paradox()
+    
 if __name__ == "__main__":
     main()
